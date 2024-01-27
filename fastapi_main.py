@@ -6,12 +6,11 @@ from fastapi import FastAPI, Request, Response
 from commands import *
 
 
-TOKEN = os.environ["TOKEN"]
 # Initialize python telegram bot
 ptb = (
     Application.builder()
     .updater(None)
-    .token(TOKEN)
+    .token(os.environ["TOKEN"])
     .read_timeout(7)
     .get_updates_read_timeout(42)
     .build()
@@ -20,7 +19,8 @@ ptb = (
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    # await ptb.bot.setWebhook('https://omenrigby.pythonanywhere.com ') # replace <your-webhook-url>
+    if os.environ.get('WEBHOOK'):
+        await ptb.bot.setWebhook(os.environ['WEBHOOK'])
     async with ptb:
         await ptb.start()
         yield
