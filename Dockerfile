@@ -1,8 +1,8 @@
 FROM python:3.10-slim
 
 RUN apt-get update && \
-    apt-get install -y software-properties-common && \
-    apt-get install -y python3-pip
+    apt-get install -y python3-pip \
+EXPOSE 80
 EXPOSE 8080
 # Cleanup
 RUN apt-get remove -y g++ make curl && \
