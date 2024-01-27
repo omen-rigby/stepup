@@ -18,4 +18,4 @@ COPY *.txt .
 RUN pip install --no-cache-dir --upgrade pip -r requirements.txt
 COPY . ./
 
-CMD ["gunicorn", " --bind", "0.0.0.0:8080", "fastapi_main:app", "-k", "uvicorn.workers.UvicornWorker"]
+CMD ["gunicorn", "fastapi_main:app",  " --bind", "0.0.0.0:8080", "-k", "uvicorn.workers.UvicornWorker"]
