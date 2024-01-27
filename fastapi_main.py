@@ -30,6 +30,11 @@ async def lifespan(_: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 
+@app.get("/")
+async def index(req: Request):
+    return Response(status_code=HTTPStatus.OK)
+
+
 @app.post("/")
 async def process_update(req: Request):
     jason = await req.json()
