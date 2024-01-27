@@ -6,7 +6,6 @@ from fastapi import FastAPI, Request, Response
 from commands import *
 
 
-# Initialize python telegram bot
 ptb = (
     Application.builder()
     .updater(None)
@@ -26,7 +25,7 @@ async def lifespan(_: FastAPI):
         yield
         await ptb.stop()
 
-# Initialize FastAPI app (similar to Flask)
+
 app = FastAPI(lifespan=lifespan)
 
 
